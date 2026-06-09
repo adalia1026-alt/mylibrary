@@ -1,0 +1,20 @@
+{
+  "presets": ["next/babel"],
+  "env": {
+    "development": {
+      "plugins": [
+        "@react-dev-inspector/babel-plugin"
+      ],
+      "presets": [
+        [
+          "next/babel",
+          {
+            "preset-react": {
+              "development": true
+            }
+          }
+        ]
+      ]
+    }
+  }
+}

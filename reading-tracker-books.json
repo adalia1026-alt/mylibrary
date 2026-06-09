@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1774428781833-a6wur993z",
+    "title": "月亮与六便士",
+    "author": "毛姆",
+    "cover_url": "https://coze-coding-project.tos.coze.site/coze_storage_7620997196367888390/book-covers/1774428246537_WPS_1_ed3a0f3a.png?sign=1777020246-9442c82d4e-0-c82556dae0e71a599a163061dcbabdfc5c95593ac1f2f37a1d59d709b3ff8855",
+    "publisher": "",
+    "isbn": "",
+    "start_date": "2026-01-07",
+    "end_date": "2026-02-06",
+    "rating": 4,
+    "review": "原来题目的月亮是梦想；六便士是金钱的代表。男主最后实现梦想了吗？我认为在他抛弃一切拿起画笔的那一刻就实现了梦想。可能到死他都不知道他的画作会变得价值连城。但是这是理想状态下的月亮与六便士，现实中这样的却很少，因为生存的压力真的很大，它抵得过千斤顶；而成功的几率真的无法揣测。但这又何妨。",
+    "status": "completed",
+    "created_at": "2026-03-25T08:53:01.833Z",
+    "updated_at": "2026-03-25T09:02:09.683Z",
+    "tags": [
+      "梦想",
+      "显示"
+    ]
+  },
+  {
+    "id": "1779415745028-g7i2wzjob",
+    "title": "兜底",
+    "author": "晴山",
+    "nationality": "CN",
+    "cover_url": "https://coze-coding-project.tos.coze.site/coze_storage_7620997196367888390/book-covers/1779415691539_pasted_image_dd12318a.png?sign=1782007692-1d267d3692-0-a8e30321351ca3b4aa6d6c92990d763f3f70a79cfefc2c8a4c75896d3be80d6f",
+    "publisher": "",
+    "isbn": "",
+    "start_date": "2026-01-07",
+    "end_date": "2026-01-21",
+    "rating": 4,
+    "review": "没有动力的时候可以看一下这本书，生活无望又无聊的时候也可以看一下这边书。通过读这本书可以通过作者的绝境知道个人成长的动力是什么，无关他人，只有自己。所以我认为这是一本自驱力的书，提醒自己居安思危，让自己时刻保持能力和动力勇敢的面对任何未来的不确定的时刻。",
+    "status": "completed",
+    "created_at": "2026-05-22T02:09:05.028Z",
+    "updated_at": "2026-05-22T02:10:07.593Z",
+    "tags": []
+  }
+]
