@@ -10,6 +10,21 @@ struct ServerState {
   child: Option<Child>,
 }
 
+/// 计算文件的简单 hash（文件大小 + 修改时间），避免引入额外依赖
+fn file_stamp(path: &std::path::Path) -> String {
+  if let Ok(meta) = fs::metadata(path) {
+    let size = meta.len();
+    let mtime = meta.modified()
+      .ok()
+      .and_then(|t| t.duration_since(std::time::UNIX_EPOCH).ok())
+      .map(|d| d.as_secs())
+      .unwrap_or(0);
+    format!("{}-{}", size, mtime)
+  } else {
+    "unknown".to_string()
+  }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
   tauri::Builder::default()
@@ -78,21 +93,32 @@ pub fn run() {
         }
 
         // Extract standalone (code only — data is now in persistent/)
+        // 版本戳：记录上次解压的 tar.gz stamp，避免每次启动都重复解压
         if tar_path.exists() {
-          eprintln!("[MyLibrary] Extracting standalone...");
+          let stamp_file = app_data_dir.join("standalone_stamp.txt");
+          let current_stamp = file_stamp(&tar_path);
+          let last_stamp = fs::read_to_string(&stamp_file).unwrap_or_default();
 
-          fs::create_dir_all(&extract_dir).unwrap_or(());
+          if current_stamp != last_stamp.trim() {
+            eprintln!("[MyLibrary] Extracting standalone (version updated)...");
 
-          let status = Command::new("/usr/bin/tar")
-            .args(["xzf", &tar_path.to_string_lossy().to_string(), "-C", &extract_dir.to_string_lossy().to_string()])
-            .status();
+            fs::create_dir_all(&extract_dir).unwrap_or(());
 
-          match status {
-            Ok(s) if s.success() => {
-              eprintln!("[MyLibrary] Extraction complete");
+            let status = Command::new("/usr/bin/tar")
+              .args(["xzf", &tar_path.to_string_lossy().to_string(), "-C", &extract_dir.to_string_lossy().to_string()])
+              .status();
+
+            match status {
+              Ok(s) if s.success() => {
+                eprintln!("[MyLibrary] Extraction complete");
+                // 写入新戳，下次启动跳过解压
+                let _ = fs::write(&stamp_file, &current_stamp);
+              }
+              Ok(s) => eprintln!("[MyLibrary] tar failed: {}", s),
+              Err(e) => eprintln!("[MyLibrary] tar error: {}", e),
             }
-            Ok(s) => eprintln!("[MyLibrary] tar failed: {}", s),
-            Err(e) => eprintln!("[MyLibrary] tar error: {}", e),
+          } else {
+            eprintln!("[MyLibrary] Standalone is up-to-date, skipping extraction");
           }
 
           // 复制种子 JSON 数据到持久化目录（仅首次）

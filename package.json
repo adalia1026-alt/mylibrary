@@ -1,6 +1,6 @@
 {
   "name": "projects",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "build": "bash ./scripts/build.sh",
@@ -58,6 +58,7 @@
     "drizzle-zod": "^0.8.3",
     "embla-carousel-react": "^8.6.0",
     "epub2": "^3.0.2",
+    "html2canvas": "^1.4.1",
     "input-otp": "^1.4.2",
     "jszip": "^3.10.1",
     "lucide-react": "^0.468.0",

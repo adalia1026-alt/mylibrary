@@ -48,7 +48,7 @@ async function initDb(): Promise<any> {
   // 启用 WAL 模式（sql.js 不支持 WAL，但可以设置其他 pragma）
   _db.run('PRAGMA foreign_keys = ON')
 
-  // 创建表结构
+  // 创建表结构（版本更新时兼容旧数据库，用 IF NOT EXISTS + ADD COLUMN）
   _db.run(`
     CREATE TABLE IF NOT EXISTS books (
       id TEXT PRIMARY KEY,
@@ -77,6 +77,20 @@ async function initDb(): Promise<any> {
       created_at TEXT NOT NULL
     )
   `)
+
+  // Schema migration：对已有数据库补充新字段（版本升级安全）
+  // ADD COLUMN 在字段已存在时会抛错，用 try/catch 忽略
+  const migrateColumns = [
+    `ALTER TABLE books ADD COLUMN nationality TEXT NOT NULL DEFAULT ''`,
+    `ALTER TABLE books ADD COLUMN publisher TEXT NOT NULL DEFAULT ''`,
+    `ALTER TABLE books ADD COLUMN isbn TEXT NOT NULL DEFAULT ''`,
+    `ALTER TABLE books ADD COLUMN tags TEXT NOT NULL DEFAULT '[]'`,
+    `ALTER TABLE books ADD COLUMN review TEXT`,
+    `ALTER TABLE books ADD COLUMN rating REAL`,
+  ]
+  for (const sql of migrateColumns) {
+    try { _db.run(sql) } catch (_) { /* 字段已存在，忽略 */ }
+  }
 
   _db.run('CREATE INDEX IF NOT EXISTS idx_books_status ON books(status)')
   _db.run('CREATE INDEX IF NOT EXISTS idx_books_created ON books(created_at)')

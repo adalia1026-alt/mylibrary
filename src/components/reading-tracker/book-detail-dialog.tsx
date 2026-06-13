@@ -66,6 +66,7 @@ export function BookDetailDialog({
     if (book) {
       setStatus(book.status);
       setTitle(book.title || '');
+      setNationality(book.nationality || ''); // 修复：初始化国别字段
       setStartDate(book.start_date ? new Date(book.start_date) : undefined);
       setEndDate(book.end_date ? new Date(book.end_date) : undefined);
       setRating(book.rating || 0);
