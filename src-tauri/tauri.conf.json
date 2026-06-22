@@ -1,13 +1,13 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "MyLibrary",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "identifier": "com.mylibrary.app",
   "build": {
     "frontendDist": "../frontend-dist",
     "devUrl": "http://localhost:3001",
     "beforeDevCommand": "pnpm dev",
-    "beforeBuildCommand": "rm -rf .next && npx next build && cp src-tauri/standalone/server.js .next/standalone/server.js && cp -r .next/static .next/standalone/.next/static && mkdir -p .next/standalone/node_modules/sql.js/dist && cp node_modules/sql.js/dist/*.wasm .next/standalone/node_modules/sql.js/dist/ && mkdir -p .next/standalone/data .next/standalone/public/uploads && cp reading-tracker-books.json .next/standalone/data/ 2>/dev/null; cp reading-tracker-tags.json .next/standalone/data/ 2>/dev/null && rm -f .next/standalone/data/library.db && find .next/standalone/public/uploads -type f -delete && rm -rf .next/standalone/src-tauri && rm -f src-tauri/standalone/standalone.tar.gz && mkdir -p src-tauri/standalone && cd .next/standalone && tar czf ../../src-tauri/standalone/standalone.tar.gz . && echo 'standalone prepared'"
+    "beforeBuildCommand": "rm -rf .next && npx next build && cp src-tauri/standalone/server.js .next/standalone/server.js && cp -r .next/static .next/standalone/.next/static && mkdir -p .next/standalone/node_modules/sql.js/dist && cp node_modules/sql.js/dist/*.wasm .next/standalone/node_modules/sql.js/dist/ && mkdir -p .next/standalone/node_modules/html2canvas/dist && cp -r node_modules/html2canvas/dist/* .next/standalone/node_modules/html2canvas/dist/ && cp node_modules/html2canvas/package.json .next/standalone/node_modules/html2canvas/ && mkdir -p .next/standalone/data .next/standalone/public/uploads && cp reading-tracker-books.json .next/standalone/data/ 2>/dev/null; cp reading-tracker-tags.json .next/standalone/data/ 2>/dev/null && rm -f .next/standalone/data/library.db && find .next/standalone/public/uploads -type f -delete && rm -rf .next/standalone/src-tauri .next/standalone/src .next/standalone/scripts .next/standalone/sql .next/standalone/dist .next/standalone/frontend-dist .next/standalone/.pnpm-store .next/standalone/*.dmg .next/standalone/*.tar.gz .next/standalone/AGENTS.md .next/standalone/Brewfile .next/standalone/README.md .next/standalone/components.json .next/standalone/eslint.config.mjs .next/standalone/tsconfig.json .next/standalone/tsconfig.tsbuildinfo .next/standalone/next.config.ts .next/standalone/postcss.config.mjs .next/standalone/pnpm-lock.yaml && rm -rf .next/standalone/node_modules/typescript .next/standalone/node_modules/.cache && rm -f src-tauri/standalone/standalone.tar.gz && mkdir -p src-tauri/standalone && cd .next/standalone && tar czf ../../src-tauri/standalone/standalone.tar.gz . && echo 'standalone prepared (optimized)'"
   },
   "app": {
     "windows": [],

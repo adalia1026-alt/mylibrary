@@ -99,3 +99,28 @@ Desktop.ini
 
 .coze-logs
 .cozeproj/reduction
+
+# ─── 项目专用（同步到 GitHub 不需要的）───
+
+# pnpm store（包缓存）
+.pnpm-store/
+
+# 本地数据库和用户数据
+data/
+public/uploads/
+
+# Tauri 构建产物
+src-tauri/target/
+src-tauri/standalone/
+
+
+
+# AI 助手本地配置
+.coze
+.claude/
+
+# WorkBuddy 工作区
+.workbuddy/
+
+# 其他
+*.tar.gz

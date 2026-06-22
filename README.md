@@ -19,7 +19,7 @@ TypeScript — 类型安全 / Type safety
 <img width="2400" height="1600" alt="image" src="https://github.com/user-attachments/assets/dc3dd15c-bc13-4ad7-8aa4-005a9e49031d" />
 
 ## 📦 安装使用 / Installation
-前往 src-tauri/target/release/bundle/dmg/MyLibrary_0.1.0_aarch64.dmg  页面下载最新版本的 .dmg 文件  
+前往 main/MyLibrary_0.1.0_aarch64.dmg  页面下载最新版本的 .dmg 文件  
 双击打开并拖入 Applications 文件夹  
 首次打开如遇安全提示，请在「系统设置 → 隐私与安全性」中允许运行  
 目前仅支持 macOS。Windows 版本敬请期待。  
